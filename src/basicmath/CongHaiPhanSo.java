@@ -1,3 +1,5 @@
+package basicmath;
+
 import java.util.Scanner;
 
 public class CongHaiPhanSo {

@@ -1,3 +1,5 @@
+package string;
+
 /*
 Given a String str with length n, int a with a < n, int b with b < n.
 Cut the str with a length a and add to the end of the str. Do the same with length b.
