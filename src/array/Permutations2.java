@@ -1,6 +1,7 @@
 package array;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /*
@@ -23,21 +24,30 @@ Constraints:
  */
 public class Permutations2 {
     public List<List<Integer>> permuteUnique(int[] nums) {
-        List<List<Integer>> list = new ArrayList<>();
-        backtrack(list, new ArrayList<>(), nums);
-        return list;
+        List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(nums); // Sort the input array to handle duplicates
+
+        boolean[] used = new boolean[nums.length];
+        backtrack(nums, used, new ArrayList<>(), result);
+
+        return result;
     }
 
-    public void backtrack(List<List<Integer>> list, List<Integer> childList, int[] nums){
-        if(childList.size() == nums.length){
-            if(!list.contains(new ArrayList<>(childList)))
-                list.add(new ArrayList<>(childList));
-        }else{
-            for (int num : nums) {
-                childList.add(num);
-                backtrack(list, childList, nums);
-                childList.remove(childList.size() - 1);
+    private void backtrack(int[] nums, boolean[] used, List<Integer> currentPermutation, List<List<Integer>> result) {
+        if (currentPermutation.size() == nums.length) {
+            result.add(new ArrayList<>(currentPermutation));
+            return;
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            if (used[i] || (i > 0 && nums[i] == nums[i - 1] && !used[i - 1])) {
+                continue; // Skip duplicates
             }
+            used[i] = true;
+            currentPermutation.add(nums[i]);
+            backtrack(nums, used, currentPermutation, result);
+            currentPermutation.remove(currentPermutation.size() - 1);
+            used[i] = false;
         }
     }
 }

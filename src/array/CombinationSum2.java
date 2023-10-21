@@ -44,11 +44,10 @@ public class CombinationSum2 {
     public void backtrack(List<List<Integer>> list, List<Integer> childList, int[] nums, int remain, int start) {
         if (remain < 0) return;
         else if (remain == 0) {
-            if (!list.contains(new ArrayList<>(childList)))
-                list.add(new ArrayList<>(childList));
+            list.add(new ArrayList<>(childList));
         } else {
             for (int i = start; i < nums.length; i++) {
-                if(i > start && nums[i] == nums[i-1]) continue; // skip duplicate element
+                if (i > start && nums[i] == nums[i - 1]) continue;
                 childList.add(nums[i]);
                 backtrack(list, childList, nums, remain - nums[i], i + 1);
                 childList.remove(childList.size() - 1);

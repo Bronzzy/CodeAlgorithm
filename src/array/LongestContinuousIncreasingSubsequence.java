@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
-You are given an array of integers, and your task is to find the longest continuous increasing subarray in which every element is part of a subsequence.
+Given an array of integers, find the longest continuous increasing subarray in which every element is part of a subsequence.
 A subarray is considered continuous if it consists of consecutive elements from the input array.
 
 Example 1:
@@ -46,6 +46,7 @@ public class LongestContinuousIncreasingSubsequence {
         }
         if (childList.size() > list.size()) {
             list = new ArrayList<>(childList);
+
         }
         return list;
     }

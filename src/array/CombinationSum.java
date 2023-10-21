@@ -51,6 +51,5 @@ public class CombinationSum {
                 childList.remove(childList.size() - 1);
             }
         }
-        list.add(childList);
     }
 }
