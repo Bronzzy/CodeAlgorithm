@@ -29,39 +29,7 @@ Constraints:
     s consists of English letters, digits, symbols and spaces.
  */
 public class LongestSubstringWithoutRepeatingCharacters {
-
-    /*
-    This code is to find Longest Substring Without Repeating Characters
-    that takes ONLY SUBSEQUENCE characters
-     */
-
-    public int lengthOfLongestSubstring(String s) {
-        char[] chars = s.toCharArray();
-        List<Character> list = new ArrayList<>();
-        List<Character> childlist = new ArrayList<>();
-
-        for (int i = 0; i < chars.length; i++) {
-            if (i == 0 || !childlist.contains(chars[i])) {
-                childlist.add(chars[i]);
-            } else {
-                if(childlist.size() > list.size()){
-                    list = new ArrayList<>(childlist);
-                }
-                childlist.clear();
-                childlist.add(chars[i]);
-            }
-        }
-        if(childlist.size() > list.size()){
-            list = new ArrayList<>(childlist);
-        }
-        return list.size();
-    }
-
-    /*
-    This code is to find Longest Substring Without Repeating Characters
-    that takes EVERY character
-     */
-    public String lengthOfLongestSubstring1(String s) {
+    public String lengthOfLongestSubstring(String s) {
         char[] chars = s.toCharArray();
         List<Character> currentSubstring = new ArrayList<>();
         List<Character> longestSubstring = new ArrayList<>();
@@ -86,5 +54,34 @@ public class LongestSubstringWithoutRepeatingCharacters {
         }
 
         return result.toString();
+    }
+
+    public int lengthOfLongestSubstring1(String s) {
+        char[] charsArr = s.toCharArray();
+        List<Character> currentSubString = new ArrayList<>();
+        List<Character> longestSubString = new ArrayList<>();
+
+        for (int i = 0; i < charsArr.length; i++) {
+            char currentChar = charsArr[i];
+            if (!currentSubString.contains(charsArr)) {
+                currentSubString.add(currentChar);
+            } else {
+                int index = currentSubString.indexOf(currentChar);
+                currentSubString.subList(0, index + 1).clear();
+                currentSubString.add(currentChar);
+            }
+            if(currentSubString.size() > longestSubString.size()){
+                longestSubString = new ArrayList<>(currentSubString);
+            }
+        }
+        return longestSubString.size();
+        /*
+        in case of return String instead:
+        StringBuilder sb = new StringBuilder();
+        for (Character character : longestSubString) {
+            sb.append(character);
+        }
+         return sb.toString();
+         */
     }
 }

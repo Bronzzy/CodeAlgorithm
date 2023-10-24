@@ -20,9 +20,9 @@ Explanation: The array ans is formed as follows:
 - ans = [1,3,2,1,1,3,2,1]
 */
 public class ConcatenationOfArray {
-    public int[] getConcatenation(int[] nums){
+    public int[] getConcatenation(int[] nums) {
         int[] result = new int[nums.length * 2];
-        for(int i=0;i<nums.length;i++)
+        for (int i = 0; i < nums.length; i++)
             result[i + nums.length] = result[i] = nums[i];
         return result;
     }
